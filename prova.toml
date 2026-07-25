@@ -1,0 +1,19 @@
+# One manifest, two hats. This package both exports a namespace (a plugin — `[plugin]`) and runs
+# its own proofs (a suite). A consumer instead pins it by source — a released tag:
+#   vault = { git = "https://github.com/prova-rs/prova-vault", tag = "v1.0" }
+[plugin]
+name        = "vault"
+description = "HashiCorp Vault — ephemeral dev-mode server, KV v2 seeded and asserted over the vault CLI, zero native code"
+license     = "MIT"
+
+# The range of prova versions this plugin is built against; a consumer is checked against it.
+[requires]
+prova = ">=0.3"
+
+[run]
+proofs = ["proofs"]
+
+# Resolve THIS plugin from its own directory, so the self-tests can `require("vault")` exactly
+# as a consumer would.
+[plugins]
+vault = { path = "." }
