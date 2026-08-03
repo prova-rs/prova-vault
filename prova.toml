@@ -15,5 +15,5 @@ proofs = ["proofs"]
 
 # Resolve THIS package from its own directory, so the self-tests can `require("vault")` exactly
 # as a consumer would.
-[packages]
+[dependencies]
 vault = { path = "." }
